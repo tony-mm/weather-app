@@ -30,15 +30,15 @@ async function getWeather(city) {
         const isDay = currentTime >= sunrise && currentTime < sunset;
 
     if (data.weather[0].main == "Clouds") {
-        weatherIcon.src = isDay ? "images/cloudy.png" : "images/cloudy-night.png";
+        weatherIcon.src = isDay ? "images/cloudy.png" : "images/cloudy-night-removebg-preview.png";
     } else if (data.weather[0].main == "Clear") {
-        weatherIcon.src = isDay ? "images/clear.png" : "images/clear-night.png";
+        weatherIcon.src = isDay ? "images/clear.png" : "images/clear-night-removebg-preview.png";
     } else if (data.weather[0].main == "Rain") {
         weatherIcon.src = isDay ? "images/heavy-rain.png" : "images/heavy-night.png";
     } else if (data.weather[0].main == "Drizzle") {
-        weatherIcon.src = isDay ? "images/drizzle.png" : "images/drizzle-night.png";
+        weatherIcon.src = isDay ? "images/drizzle.png" : "images/drizzle-night-removebg-preview.png";
     } else if (data.weather[0].main == "Mist") {
-        weatherIcon.src = isDay ? "images/mist.png" : "images/mist-night.png";
+        weatherIcon.src = isDay ? "images/mist.png" : "images/mist-night-removebg-preview.png";
     }
 
 
