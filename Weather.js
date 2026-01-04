@@ -4,6 +4,7 @@ const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric";
 const searchBox = document.querySelector(".search input");
 const searchBtn = document.querySelector(".search button");
 const weatherIcon = document.querySelector(".weather_icon");
+const weatherDisplay = document.querySelector(".results");
 
 
 
@@ -14,24 +15,35 @@ async function getWeather(city) {
 
     console.log(data);
 
+    weatherDisplay.style.opacity = '0';
 
-    document.querySelector('.city').innerHTML = data.name;
-    document.querySelector('.temp').innerHTML = Math.round(data.main.temp) + "°C";
-    document.querySelector('.Humidity').innerHTML = data.main.humidity + "%";
-    document.querySelector('.Wind').innerHTML = data.wind.speed + "km/h";
+    setTimeout(() => {
+        document.querySelector('.city').innerHTML = data.name;
+        document.querySelector('.temp').innerHTML = Math.round(data.main.temp) + "°C";
+        document.querySelector('.Humidity').innerHTML = data.main.humidity + "%";
+        document.querySelector('.Wind').innerHTML = data.wind.speed + "km/h";
+    
 
+        const currentTime = data.dt;
+        const sunrise = data.sys.sunrise;
+        const sunset = data.sys.sunset;
+        const isDay = currentTime >= sunrise && currentTime < sunset;
 
     if (data.weather[0].main == "Clouds") {
-        weatherIcon.src = "images/cloudy.png";
+        weatherIcon.src = isDay ? "images/cloudy.png" : "images/cloudy-night.png";
     } else if (data.weather[0].main == "Clear") {
-        weatherIcon.src = "images/clear.png";
+        weatherIcon.src = isDay ? "images/clear.png" : "images/clear-night.png";
     } else if (data.weather[0].main == "Rain") {
-        weatherIcon.src = "images/heavy-rain.png";
+        weatherIcon.src = isDay ? "images/heavy-rain.png" : "images/heavy-night.png";
     } else if (data.weather[0].main == "Drizzle") {
-        weatherIcon.src = "images/drizzle.png";
+        weatherIcon.src = isDay ? "images/drizzle.png" : "images/drizzle-night.png";
     } else if (data.weather[0].main == "Mist") {
-        weatherIcon.src = "images/mist.png";
+        weatherIcon.src = isDay ? "images/mist.png" : "images/mist-night.png";
     }
+
+
+    weatherDisplay.style.opacity = '1';
+    }, 300);
 }
 searchBtn.addEventListener("click", () => {
     getWeather(searchBox.value);

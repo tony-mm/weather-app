@@ -72,3 +72,6 @@ body, h1 {
     margin-bottom: 20px;
     gap: 10px;
 }
+.results {
+    transition: opacity 0.6s ease;
+}
