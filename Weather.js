@@ -48,3 +48,6 @@ async function getWeather(city) {
 searchBtn.addEventListener("click", () => {
     getWeather(searchBox.value);
 })
+
+// Load New York weather by default
+getWeather("New York");
